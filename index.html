@@ -124,7 +124,7 @@
     <div id="adminPanel" style="display:none; margin-top: 40px;">
       <h3>Insert Trade Record</h3>
       <form id="tradeForm">
-        <input type="text" id="userid" placeholder="userid" required>
+        <input type="text" id="codeword" placeholder="codeword" required>
         <input type="number" id="amount" placeholder="Amount" required>
         <input type="text" id="remarks" placeholder="Remarks">
         <button type="submit">Submit Record</button>
@@ -155,7 +155,7 @@
 
     document.getElementById('tradeForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const userid = document.getElementById('userid').value;
+      const userid = document.getElementById('codeword').value;
       const amount = document.getElementById('amount').value;
       const remarks = document.getElementById('remarks').value;
 
