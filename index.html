@@ -29,6 +29,13 @@
 
     header h1 {
       color: #00c0d6;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header img.logo {
+      height: 40px;
     }
 
     nav a {
@@ -102,7 +109,9 @@
 </head>
 <body>
   <header>
-    <h1>TRAWISE</h1>
+    <h1>
+      <img src="tttt.jpg" alt="TRAWISE Logo" class="logo"> TRAWISE
+    </h1>
     <nav>
       <a href="#admin">Admin</a>
     </nav>
@@ -116,7 +125,7 @@
   <section class="section" id="admin">
     <h3>Admin Login</h3>
     <form id="loginForm">
-      <input type="text" id="adminCode" placeholder="userid" required>
+      <input type="text" id="adminCode" placeholder="Codeword" required>
       <input type="password" id="adminPassword" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
@@ -124,7 +133,7 @@
     <div id="adminPanel" style="display:none; margin-top: 40px;">
       <h3>Insert Trade Record</h3>
       <form id="tradeForm">
-        <input type="text" id="codeword" placeholder="codeword" required>
+        <input type="text" id="codeword" placeholder="Codeword" required>
         <input type="number" id="amount" placeholder="Amount" required>
         <input type="text" id="remarks" placeholder="Remarks">
         <button type="submit">Submit Record</button>
@@ -155,7 +164,7 @@
 
     document.getElementById('tradeForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const userid = document.getElementById('codeword').value;
+      const codeword = document.getElementById('codeword').value;
       const amount = document.getElementById('amount').value;
       const remarks = document.getElementById('remarks').value;
 
@@ -173,9 +182,19 @@
         },
         body: JSON.stringify(data)
       })
-      .then(res => res.json())
-      .then(() => alert('Record submitted successfully'))
-      .catch(() => alert('Failed to submit record'));
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then(() => {
+        alert('Record submitted successfully');
+        document.getElementById('tradeForm').reset();
+      })
+      .catch(err => {
+        alert('Failed to submit record: ' + err.message);
+      });
     });
   </script>
 </body>
