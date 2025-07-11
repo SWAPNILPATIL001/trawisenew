@@ -116,7 +116,7 @@
   <section class="section" id="admin">
     <h3>Admin Login</h3>
     <form id="loginForm">
-      <input type="text" id="adminCode" placeholder="Codeword" required>
+      <input type="text" id="adminCode" placeholder="userid" required>
       <input type="password" id="adminPassword" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
@@ -124,7 +124,7 @@
     <div id="adminPanel" style="display:none; margin-top: 40px;">
       <h3>Insert Trade Record</h3>
       <form id="tradeForm">
-        <input type="text" id="codeword" placeholder="Codeword" required>
+        <input type="text" id="userid" placeholder="userid" required>
         <input type="number" id="amount" placeholder="Amount" required>
         <input type="text" id="remarks" placeholder="Remarks">
         <button type="submit">Submit Record</button>
@@ -155,7 +155,7 @@
 
     document.getElementById('tradeForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const codeword = document.getElementById('codeword').value;
+      const userid = document.getElementById('userid').value;
       const amount = document.getElementById('amount').value;
       const remarks = document.getElementById('remarks').value;
 
